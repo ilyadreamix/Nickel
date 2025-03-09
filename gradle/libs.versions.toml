@@ -1,0 +1,23 @@
+[versions]
+android-application = "8.9.0"
+android-desugar = "2.1.5"
+android-library = "8.9.0"
+kotlin-android = "2.1.10"
+kotlin-dsl = "5.2.0"
+nickel-sdk-compile = "35"
+nickel-sdk-minimum = "21"
+nickel-sdk-target = "35"
+nickel-version-code = "1"
+nickel-version-name = "1.0.0"
+
+[libraries]
+android-desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-desugar" }
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "android-application" }
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-android" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-application" }
+android-library = { id = "com.android.library", version.ref = "android-library" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
+kotlin-dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
+nickel-android-application = { id = "io.gitlab.ilyadreamix.nickel.buildlogic.androidapplication" }
