@@ -9,6 +9,9 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utility.libs
 import java.util.Properties
 
@@ -74,6 +77,11 @@ internal fun Project.configureAndroidApplication() {
                 }
         }
     }
+
+    dependencies {
+        add("implementation", project(":common"))
+        add("implementation", project(":presentation:root"))
+    }
 }
 
 internal fun Project.configureAndroidLibrary() {
@@ -98,7 +106,15 @@ private fun Project.configureAndroidCommon(extension: CommonExtension<*, *, *, *
         }
     }
 
+    tasks.withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
+
     dependencies {
+        add("implementation", libs.findLibrary("androidx-core").get())
         add("coreLibraryDesugaring", libs.findLibrary("android-desugar").get())
+        add("implementation", libs.findLibrary("koin-android").get())
     }
 }

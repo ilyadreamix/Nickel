@@ -24,8 +24,18 @@ dependencies {
 gradlePlugin {
     plugins {
         register("android-application") {
-            id = "io.gitlab.ilyadreamix.nickel.buildlogic.androidapplication"
+            id = "io.gitlab.ilyadreamix.nickel.buildlogic.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
+        }
+
+        register("android-library") {
+            id = "io.gitlab.ilyadreamix.nickel.buildlogic.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
+
+        register("presentation") {
+            id = "io.gitlab.ilyadreamix.nickel.buildlogic.presentation"
+            implementationClass = "PresentationConventionPlugin"
         }
     }
 }

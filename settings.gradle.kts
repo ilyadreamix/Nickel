@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "Nickel"
 
 include(":app")
+include(":common")
+include(":presentation:root")
