@@ -12,13 +12,13 @@ import io.gitlab.ilyadreamix.nickel.presentation.common.utility.provideSystemCol
 
 @Composable
 fun NickelThemeProvider(
-    colors: NickelColors = provideColors(),
-    shapes: NickelShapes = NickelShapes(),
-    sizes: NickelSizes = NickelSizes(),
+    colorScheme: NickelColorScheme = provideColors(),
+    shapes: NickelShapes = NickelDefaultShapes,
+    sizes: NickelSizes = NickelDefaultSizes,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
-        LocalNickelColors provides colors,
+        LocalNickelColorScheme provides colorScheme,
         LocalNickelShapes provides shapes,
         LocalNickelSizes provides sizes,
         content = content
@@ -27,19 +27,19 @@ fun NickelThemeProvider(
 
 @Composable
 @ReadOnlyComposable
-private fun provideColors(): NickelColors {
+private fun provideColors(): NickelColorScheme {
     val context = LocalContext.current
     when {
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> return provideDynamicColors(context)
-        isSystemInDarkTheme() -> return NickelDarkColors
-        else -> return NickelLightColors
+        isSystemInDarkTheme() -> return NickelDefaultDarkColorScheme
+        else -> return NickelDefaultLightColorScheme
     }
 }
 
 @RequiresApi(Build.VERSION_CODES.S)
-private fun provideDynamicColors(context: Context): NickelColors {
+private fun provideDynamicColors(context: Context): NickelColorScheme {
     val systemColors = provideSystemColors(context)
-    return NickelColors(
+    return NickelColorScheme(
         background = systemColors.background,
         container = systemColors.surfaceContainer,
         containerContent = systemColors.onSurface,

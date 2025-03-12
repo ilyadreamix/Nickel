@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.ui.graphics.Color
 
+@RequiresApi(Build.VERSION_CODES.S)
 internal data class SystemColors(
     val background: Color,
     val primary: Color,

@@ -7,58 +7,40 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 
-data class NickelColors(
-    val background: Color = NickelLightThemeDefaultColors.Background,
-    val container: Color = NickelLightThemeDefaultColors.Container,
-    val containerContent: Color = NickelLightThemeDefaultColors.ContainerContent,
-    val outline: Color = NickelLightThemeDefaultColors.Outline,
-    val primary: Color = NickelLightThemeDefaultColors.Primary,
-    val primaryContent: Color = NickelLightThemeDefaultColors.PrimaryContent
+data class NickelColorScheme(
+    val background: Color,
+    val container: Color,
+    val containerContent: Color,
+    val outline: Color,
+    val primary: Color,
+    val primaryContent: Color
 )
-
-internal val NickelLightColors = NickelColors(
-    background = NickelLightThemeDefaultColors.Background,
-    container = NickelLightThemeDefaultColors.Container,
-    containerContent = NickelLightThemeDefaultColors.ContainerContent,
-    outline = NickelLightThemeDefaultColors.Outline,
-    primary = NickelLightThemeDefaultColors.Primary,
-    primaryContent = NickelLightThemeDefaultColors.PrimaryContent
-)
-
-internal val NickelDarkColors = NickelColors(
-    background = NickelDarkThemeDefaultColors.Background,
-    container = NickelDarkThemeDefaultColors.Container,
-    containerContent = NickelDarkThemeDefaultColors.ContainerContent,
-    outline = NickelDarkThemeDefaultColors.Outline,
-    primary = NickelDarkThemeDefaultColors.Primary,
-    primaryContent = NickelDarkThemeDefaultColors.PrimaryContent
-)
-
-data class NickelShapes(val container: Shape = NickelThemeDefaultShapes.Container)
 
 data class NickelSizes(
-    val screenPadding: Dp = NickelThemeDefaultSizes.ScreenPadding,
-    val containerCornerRadius: Dp = NickelThemeDefaultSizes.ContainerCornerRadius,
-    val containerSpacing: Dp = NickelThemeDefaultSizes.ContainerSpacing
+    val screenPadding: Dp,
+    val containerCornerRadius: Dp,
+    val containerSpacing: Dp
 )
 
-val LocalNickelShapes = staticCompositionLocalOf { NickelShapes() }
-val LocalNickelColors = staticCompositionLocalOf { NickelColors() }
-val LocalNickelSizes = staticCompositionLocalOf { NickelSizes() }
+data class NickelShapes(val container: Shape)
+
+val LocalNickelColorScheme = staticCompositionLocalOf<NickelColorScheme> { throw IllegalStateException() }
+val LocalNickelSizes = staticCompositionLocalOf<NickelSizes> { throw IllegalStateException() }
+val LocalNickelShapes = staticCompositionLocalOf<NickelShapes> { throw IllegalStateException() }
 
 object NickelTheme {
-    val colors
+    val colorScheme
         @Composable
         @ReadOnlyComposable
-        get() = LocalNickelColors.current
-
-    val shapes
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalNickelShapes.current
+        get() = LocalNickelColorScheme.current
 
     val sizes
         @Composable
         @ReadOnlyComposable
         get() = LocalNickelSizes.current
+
+    val shapes
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalNickelShapes.current
 }
