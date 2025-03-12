@@ -113,8 +113,8 @@ private fun Project.configureAndroidCommon(extension: CommonExtension<*, *, *, *
     }
 
     dependencies {
-        add("implementation", libs.findLibrary("androidx-core").get())
         add("coreLibraryDesugaring", libs.findLibrary("android-desugar").get())
+        add("implementation", libs.findLibrary("androidx-core").get())
         add("implementation", libs.findLibrary("koin-android").get())
     }
 }

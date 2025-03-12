@@ -23,4 +23,5 @@ rootProject.name = "Nickel"
 
 include(":app")
 include(":common")
+include(":presentation:common")
 include(":presentation:root")
