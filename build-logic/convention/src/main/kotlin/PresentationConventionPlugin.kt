@@ -1,6 +1,7 @@
 import configuration.configureAndroidLibrary
 import configuration.configureCompose
 import configuration.configureKotlin
+import configuration.configurePresentation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -16,6 +17,7 @@ class PresentationConventionPlugin : Plugin<Project> {
             configureAndroidLibrary()
             configureKotlin()
             configureCompose()
+            configurePresentation()
         }
     }
 }

@@ -1,46 +1,30 @@
 package io.gitlab.ilyadreamix.nickel.presentation.common.theme
 
+import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.platform.LocalContext
 
-data class NickelColorScheme(
-    val background: Color,
-    val container: Color,
-    val containerContent: Color,
-    val outline: Color,
-    val primary: Color,
-    val primaryContent: Color
-)
+@Composable
+fun NickelTheme(content: @Composable () -> Unit) {
 
-data class NickelSizes(
-    val screenPadding: Dp,
-    val containerCornerRadius: Dp,
-    val containerSpacing: Dp
-)
+    val context = LocalContext.current
 
-data class NickelShapes(val container: Shape)
+    val isDynamicColorSchemeSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    val isUsingDarkTheme = isSystemInDarkTheme()
 
-val LocalNickelColorScheme = staticCompositionLocalOf<NickelColorScheme> { throw IllegalStateException() }
-val LocalNickelSizes = staticCompositionLocalOf<NickelSizes> { throw IllegalStateException() }
-val LocalNickelShapes = staticCompositionLocalOf<NickelShapes> { throw IllegalStateException() }
+    val colorScheme = when {
+        isDynamicColorSchemeSupported && isUsingDarkTheme -> dynamicDarkColorScheme(context = context)
+        isDynamicColorSchemeSupported && !isUsingDarkTheme -> dynamicLightColorScheme(context = context)
+        isUsingDarkTheme -> NickelDefaultDarkColorScheme
+        else -> NickelDefaultLightColorScheme
+    }
 
-object NickelTheme {
-    val colorScheme
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalNickelColorScheme.current
-
-    val sizes
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalNickelSizes.current
-
-    val shapes
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalNickelShapes.current
+    MaterialTheme(
+        colorScheme = colorScheme,
+        content = content
+    )
 }

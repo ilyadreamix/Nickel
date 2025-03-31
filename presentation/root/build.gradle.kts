@@ -1,11 +1,3 @@
 plugins {
     alias(libs.plugins.nickel.presentation)
 }
-
-android {
-    namespace = "io.gitlab.ilyadreamix.nickel.presentation.root"
-}
-
-dependencies { 
-    implementation(project(":presentation:common"))
-}
