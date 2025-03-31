@@ -7,11 +7,12 @@ androidx-compose = "1.8.0-rc02"
 androidx-compose-material-icons = "1.7.8"
 androidx-compose-material3 = "1.4.0-alpha11"
 androidx-core = "1.15.0"
+androidx-splashScreen = "1.0.1"
 koin = "4.0.2"
 kotlin-android = "2.1.10"
 kotlin-dsl = "5.2.0"
 nickel-sdk-compile = "35"
-nickel-sdk-minimum = "21"
+nickel-sdk-minimum = "24"
 nickel-sdk-target = "35"
 nickel-version-code = "1"
 nickel-version-name = "1.0.0"
@@ -26,6 +27,7 @@ androidx-compose-material3 = { module = "androidx.compose.material3:material3", 
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-splashScreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-splashScreen" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-android" }

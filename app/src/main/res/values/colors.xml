@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_background">@android:color/white</color>
+    <color name="app_splash_background">@android:color/white</color>
+    <color name="app_splash_icon">@android:color/black</color>
+</resources>

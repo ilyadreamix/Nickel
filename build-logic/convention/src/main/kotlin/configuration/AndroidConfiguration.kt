@@ -81,6 +81,8 @@ internal fun Project.configureAndroidApplication() {
     dependencies {
         add("implementation", project(":common"))
         add("implementation", project(":presentation:root"))
+
+        add("implementation", libs.findLibrary("androidx-splashScreen").get())
     }
 }
 

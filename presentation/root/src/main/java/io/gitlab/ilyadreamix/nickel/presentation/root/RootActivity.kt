@@ -18,15 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import io.gitlab.ilyadreamix.nickel.presentation.common.R
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 
 class RootActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-
+        installSplashScreen()
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(
                 lightScrim = Color.TRANSPARENT,
@@ -37,6 +36,8 @@ class RootActivity : ComponentActivity() {
                 darkScrim = Color.TRANSPARENT
             )
         )
+
+        super.onCreate(savedInstanceState)
 
         setContent {
             NickelTheme {
