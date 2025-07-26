@@ -8,12 +8,12 @@ internal fun VariantDimension.configureStaticConfiguration(localProperties: Prop
   val serverUrl = '"' + staticConfiguration.serverUrl + '"'
   val recaptchaKey = '"' + staticConfiguration.recaptchaKey + '"'
 
-  buildConfigField("String", BUILD_CONFIG_KEY_SERVER_URL, serverUrl)
-  buildConfigField("String", BUILD_CONFIG_KEY_RECAPTCHA_KEY, recaptchaKey)
+  buildConfigField("String", BuildConfigKeyServerUrl, serverUrl)
+  buildConfigField("String", BuildConfigKeyRecaptchaKey, recaptchaKey)
 }
 
-private const val BUILD_CONFIG_KEY_SERVER_URL = "NICKEL_STATIC_CONFIGURATION_SERVER_URL"
-private const val BUILD_CONFIG_KEY_RECAPTCHA_KEY = "NICKEL_STATIC_CONFIGURATION_RECAPTCHA_KEY"
+private const val BuildConfigKeyServerUrl = "NICKEL_STATIC_CONFIGURATION_SERVER_URL"
+private const val BuildConfigKeyRecaptchaKey = "NICKEL_STATIC_CONFIGURATION_RECAPTCHA_KEY"
 
 private data class StaticConfiguration(
   val serverUrl: String,
@@ -21,10 +21,10 @@ private data class StaticConfiguration(
 )
 
 private fun Properties.getStaticConfiguration(): StaticConfiguration {
-  val serverUrl = getProperty(PROPERTIES_KEY_SERVER_URL) ?: throw IllegalStateException()
-  val recaptchaKey = getProperty(PROPERTIES_KEY_RECAPTCHA_KEY) ?: throw IllegalStateException()
+  val serverUrl = getProperty(LocalPropertiesKeyServerUrl) ?: throw IllegalStateException()
+  val recaptchaKey = getProperty(LocalPropertiesKeyRecaptchaKey) ?: throw IllegalStateException()
   return StaticConfiguration(serverUrl, recaptchaKey)
 }
 
-private const val PROPERTIES_KEY_SERVER_URL = "nickel.static-configuration.server-url"
-private const val PROPERTIES_KEY_RECAPTCHA_KEY = "nickel.static-configuration.recaptcha-key"
+private const val LocalPropertiesKeyServerUrl = "nickel.static-configuration.server-url"
+private const val LocalPropertiesKeyRecaptchaKey = "nickel.static-configuration.recaptcha-key"
