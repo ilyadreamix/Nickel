@@ -6,31 +6,55 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.gitlab.ilyadreamix.nickel.presentation.common.helper.ScreenType
-import io.gitlab.ilyadreamix.nickel.presentation.common.helper.getScreenType
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 
-data class NickelThemeSizes(val cornerRadius: CornerRadius) {
+data class NickelThemeSizes(
+  val screenType: ScreenType,
+  val cornerRadius: CornerRadius,
+  val toolbar: Toolbar,
+  val navigationBar: NavigationBar
+) {
   data class CornerRadius(
     val small: Dp,
     val medium: Dp,
     val big: Dp
   )
+
+  data class Toolbar(val height: Dp)
+
+  data class NavigationBar(
+    val width: Dp,
+    val height: Dp
+  )
 }
 
-val LocalNickelThemeSizes = staticCompositionLocalOf<NickelThemeSizes> { throw IllegalStateException() }
+internal val LocalNickelThemeSizes = staticCompositionLocalOf<NickelThemeSizes> { throw IllegalStateException() }
 
+@Suppress("UnusedReceiverParameter")
 val MaterialTheme.nickelSizes
-  @[Composable ReadOnlyComposable] get() = LocalNickelThemeSizes.current
+  @Composable
+  @ReadOnlyComposable
+  get() = LocalNickelThemeSizes.current
 
 @Composable
-@ReadOnlyComposable
 internal fun getNickelThemeSizes(): NickelThemeSizes {
+
   val screenType = getScreenType()
-  val cornerRadius = getCornerRadiusSizes(screenType)
-  return NickelThemeSizes(cornerRadius = cornerRadius)
+
+  val cornerRadius = screenType.getCornerRadiusSizes()
+  val toolbar = screenType.getToolbarSizes()
+  val navigationBar = screenType.getNavigationBarSizes()
+
+  return NickelThemeSizes(
+    screenType = screenType,
+    cornerRadius = cornerRadius,
+    toolbar = toolbar,
+    navigationBar = navigationBar
+  )
 }
 
-private fun getCornerRadiusSizes(screenType: ScreenType) = when (screenType) {
+private fun ScreenType.getCornerRadiusSizes() = when (this) {
   ScreenType.Phone -> NickelThemeSizes.CornerRadius(
     small = PhoneCornerRadiusSmall,
     medium = PhoneCornerRadiusMedium,
@@ -40,6 +64,22 @@ private fun getCornerRadiusSizes(screenType: ScreenType) = when (screenType) {
     small = TabletCornerRadiusSmall,
     medium = TabletCornerRadiusMedium,
     big = TabletCornerRadiusBig
+  )
+}
+
+private fun ScreenType.getToolbarSizes() = when (this) {
+  ScreenType.Phone -> NickelThemeSizes.Toolbar(height = 56.dp)
+  ScreenType.Tablet -> NickelThemeSizes.Toolbar(height = 72.dp)
+}
+
+private fun ScreenType.getNavigationBarSizes() = when (this) {
+  ScreenType.Phone -> NickelThemeSizes.NavigationBar(
+    width = Dp.Unspecified,
+    height = 56.dp
+  )
+  ScreenType.Tablet -> NickelThemeSizes.NavigationBar(
+    width = 72.dp,
+    height = Dp.Unspecified
   )
 }
 
