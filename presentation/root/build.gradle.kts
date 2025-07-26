@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.nickel.presentation)
+  alias(libs.plugins.nickel.presentation)
 }
 
 dependencies {
-    implementation(libs.androidx.splashScreen)
+  implementation(libs.androidx.splashScreen)
 }

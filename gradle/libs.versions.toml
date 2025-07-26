@@ -1,25 +1,43 @@
+# --------
+# Versions
+# --------
+
 [versions]
-android-application = "8.9.1"
+android-application = "8.11.1"
 android-desugar = "2.1.5"
-android-library = "8.9.1"
+android-library = "8.11.1"
+
 androidx-activity-compose = "1.10.1"
-androidx-compose = "1.8.0-rc02"
+androidx-compose = "1.9.0-beta03"
 androidx-compose-material-icons = "1.7.8"
-androidx-compose-material3 = "1.4.0-alpha11"
-androidx-core = "1.15.0"
+androidx-compose-material3 = "1.4.0-alpha18"
+androidx-core = "1.16.0"
 androidx-splashScreen = "1.0.1"
-koin = "4.0.2"
+
+google-recaptcha = "18.8.0-beta01"
+
+koin = "4.1.0"
+
 kotlin-android = "2.1.10"
 kotlin-dsl = "5.2.0"
-nickel-sdk-compile = "35"
+kotlin-serialization-json = "1.9.0"
+
+ktor = "3.2.2"
+
+nickel-sdk-compile = "36"
 nickel-sdk-minimum = "24"
-nickel-sdk-target = "35"
+nickel-sdk-target = "36"
 nickel-version-code = "1"
 nickel-version-name = "1.0.0"
+
+# ---------
+# Libraries
+# ---------
 
 [libraries]
 android-desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-desugar" }
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "android-application" }
+
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose" }
 androidx-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "androidx-compose-material-icons" }
@@ -28,16 +46,35 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-splashScreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-splashScreen" }
+
+google-recaptcha = { module = "com.google.android.recaptcha:recaptcha", version.ref = "google-recaptcha" }
+
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-android" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
+
+# -------
+# Plugins
+# -------
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-application" }
 android-library = { id = "com.android.library", version.ref = "android-library" }
+
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin-android" }
 kotlin-dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlin-dsl" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-android" }
+
 nickel-android-application = { id = "io.gitlab.ilyadreamix.nickel.buildlogic.android.application" }
 nickel-android-library = { id = "io.gitlab.ilyadreamix.nickel.buildlogic.android.library" }
 nickel-presentation = { id = "io.gitlab.ilyadreamix.nickel.buildlogic.presentation" }
+nickel-data = { id = "io.gitlab.ilyadreamix.nickel.buildlogic.data" }
+nickel-domain = { id = "io.gitlab.ilyadreamix.nickel.buildlogic.domain" }

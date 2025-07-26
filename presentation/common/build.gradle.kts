@@ -1,3 +1,3 @@
 plugins {
-    alias(libs.plugins.nickel.presentation)
+  alias(libs.plugins.nickel.presentation)
 }

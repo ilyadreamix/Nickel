@@ -1,14 +1,12 @@
 package io.gitlab.ilyadreamix.nickel.application.provider
 
-import android.content.Context
-import io.gitlab.ilyadreamix.nickel.application.R
+import io.gitlab.ilyadreamix.nickel.application.BuildConfig
 import io.gitlab.ilyadreamix.nickel.common.provider.StaticConfiguration
 import io.gitlab.ilyadreamix.nickel.common.provider.StaticConfigurationProvider
 
-internal class StaticConfigurationProviderImpl(private val applicationContext: Context)
-    : StaticConfigurationProvider {
-
-    override fun provide() = StaticConfiguration(
-        cobaltServerUrl = applicationContext.getString(R.string.app_cobalt_server_url)
-    )
+internal class StaticConfigurationProviderImpl : StaticConfigurationProvider {
+  override fun provide() = StaticConfiguration(
+    serverUrl = BuildConfig.NICKEL_STATIC_CONFIGURATION_SERVER_URL,
+    recaptchaKey = BuildConfig.NICKEL_STATIC_CONFIGURATION_RECAPTCHA_KEY
+  )
 }

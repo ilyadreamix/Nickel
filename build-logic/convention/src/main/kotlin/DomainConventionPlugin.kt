@@ -1,9 +1,10 @@
 import configuration.configureAndroidLibrary
+import configuration.configureDomain
 import configuration.configureKotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class AndroidLibraryConventionPlugin : Plugin<Project> {
+class DomainConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) {
     with(target) {
       with(pluginManager) {
@@ -13,6 +14,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
       configureAndroidLibrary()
       configureKotlin()
+      configureDomain()
     }
   }
 }

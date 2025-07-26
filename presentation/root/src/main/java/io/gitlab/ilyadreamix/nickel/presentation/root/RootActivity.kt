@@ -24,39 +24,39 @@ import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 
 class RootActivity : ComponentActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-        enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.auto(
-                lightScrim = Color.TRANSPARENT,
-                darkScrim = Color.TRANSPARENT
-            ),
-            navigationBarStyle = SystemBarStyle.auto(
-                lightScrim = Color.TRANSPARENT,
-                darkScrim = Color.TRANSPARENT
+  override fun onCreate(savedInstanceState: Bundle?) {
+    installSplashScreen()
+    enableEdgeToEdge(
+      statusBarStyle = SystemBarStyle.auto(
+        lightScrim = Color.TRANSPARENT,
+        darkScrim = Color.TRANSPARENT
+      ),
+      navigationBarStyle = SystemBarStyle.auto(
+        lightScrim = Color.TRANSPARENT,
+        darkScrim = Color.TRANSPARENT
+      )
+    )
+
+    super.onCreate(savedInstanceState)
+
+    setContent {
+      NickelTheme {
+        Scaffold { innerPadding ->
+          Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+              .fillMaxSize()
+              .padding(innerPadding)
+          ) {
+            Image(
+              painter = painterResource(R.drawable.presentation_common_app_logo),
+              contentDescription = null,
+              colorFilter = ColorFilter.tint(color = LocalContentColor.current),
+              modifier = Modifier.width(128.dp)
             )
-        )
-
-        super.onCreate(savedInstanceState)
-
-        setContent {
-            NickelTheme {
-                Scaffold { innerPadding ->
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.presentation_common_app_logo),
-                            contentDescription = null,
-                            colorFilter = ColorFilter.tint(color = LocalContentColor.current),
-                            modifier = Modifier.width(128.dp)
-                        )
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 }

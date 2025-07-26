@@ -6,14 +6,14 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun NickelTheme(content: @Composable () -> Unit) {
-    val colorScheme = if (isSystemInDarkTheme()) {
-        NickelDefaultDarkColorScheme
-    } else {
-        NickelDefaultLightColorScheme
-    }
+  val colorScheme = if (isSystemInDarkTheme()) {
+    NickelDefaultDarkColorScheme
+  } else {
+    NickelDefaultLightColorScheme
+  }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        content = content
-    )
+  MaterialTheme(
+    colorScheme = colorScheme,
+    content = content
+  )
 }

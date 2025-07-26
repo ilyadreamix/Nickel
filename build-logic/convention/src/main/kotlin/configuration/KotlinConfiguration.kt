@@ -11,18 +11,18 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utility.libs
 
 internal fun Project.configureKotlin() {
-    extensions.configure<JavaPluginExtension> {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+  extensions.configure<JavaPluginExtension> {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
 
-    tasks.withType<KotlinCompile>().configureEach {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
+  tasks.withType<KotlinCompile>().configureEach {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_17)
     }
+  }
 
-    dependencies {
-        add("implementation", libs.findLibrary("koin-core").get())
-    }
+  dependencies {
+    add("implementation", libs.findLibrary("koin-core").get())
+  }
 }

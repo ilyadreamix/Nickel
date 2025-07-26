@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Nickel.Theme.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/app_splash_background</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
-        <item name="postSplashScreenTheme">@style/Nickel.Theme</item>
-    </style>
+  <style name="Nickel.Theme.SplashScreen" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/app_splash_background</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+    <item name="postSplashScreenTheme">@style/Nickel.Theme</item>
+  </style>
 </resources>

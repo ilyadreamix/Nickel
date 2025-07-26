@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_cobalt_server_url" translatable="false">http://127.0.0.1:8080</string>
-</resources>
