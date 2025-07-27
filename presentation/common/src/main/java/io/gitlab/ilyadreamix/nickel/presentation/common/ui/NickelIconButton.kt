@@ -7,9 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelIndicationPressStrength
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.rememberNickelIndication
 
 @Composable
 fun NickelIconButton(
@@ -19,8 +17,7 @@ fun NickelIconButton(
 ) {
   NickelSurface(
     onClick = onClick,
-    modifier = modifier.size(MaterialTheme.nickelSizes.iconButton.containerSize),
-    indication = rememberNickelIndication(pressStrength = NickelIndicationPressStrength.Normal)
+    modifier = modifier.size(MaterialTheme.nickelSizes.iconButton.containerSize)
   ) {
     Box(
       modifier = Modifier.fillMaxSize(),

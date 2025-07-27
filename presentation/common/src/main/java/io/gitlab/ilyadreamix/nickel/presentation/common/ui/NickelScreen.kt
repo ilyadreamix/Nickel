@@ -2,6 +2,10 @@ package io.gitlab.ilyadreamix.nickel.presentation.common.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +19,7 @@ import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPho
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ui
 
 @Composable
 fun NickelScreen(
@@ -55,6 +60,9 @@ private fun PhoneScreenLayout(
   content: @Composable (innerPadding: PaddingValues) -> Unit,
   modifier: Modifier = Modifier,
 ) {
+
+  val insetsPadding = WindowInsets.ui.asPaddingValues()
+
   SubcomposeLayout(modifier = modifier) { constraints ->
     val toolbarMeasurables = if (toolbar != null) {
       subcompose(slotId = SlotToolbar) { toolbar(PaddingValues.Zero) }
@@ -72,7 +80,9 @@ private fun PhoneScreenLayout(
 
     val contentPadding = PaddingValues(
       top = toolbarPlaceable?.height?.toDp() ?: 0.dp,
-      bottom = navigationBarPlaceable?.height?.toDp() ?: 0.dp
+      bottom = navigationBarPlaceable?.height?.toDp() ?: 0.dp,
+      start = insetsPadding.calculateStartPadding(layoutDirection),
+      end = insetsPadding.calculateEndPadding(layoutDirection)
     )
     val contentMeasurable = subcompose(slotId = SlotContent) { content(contentPadding) }
     val contentPlaceable = contentMeasurable.first().measure(constraints)
