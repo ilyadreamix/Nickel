@@ -3,12 +3,8 @@ package io.gitlab.ilyadreamix.nickel.presentation.common.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -19,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 
@@ -84,14 +79,14 @@ private fun PhoneScreen(
 
     return@SubcomposeLayout layout(width = constraints.maxWidth, height = constraints.maxHeight) {
 
-      contentPlaceable.place(x = 0, y = 0)
+      contentPlaceable.placeRelative(x = 0, y = 0)
 
       if (navigationBarPlaceable != null) {
-        val navigationBarPositionY = constraints.maxHeight - navigationBarPlaceable.height
-        navigationBarPlaceable.place(x = 0, y = navigationBarPositionY)
+        val positionY = constraints.maxHeight - navigationBarPlaceable.height
+        navigationBarPlaceable.placeRelative(x = 0, y = positionY)
       }
 
-      toolbarPlaceable?.place(x = 0, y = 0)
+      toolbarPlaceable?.placeRelative(x = 0, y = 0)
     }
   }
 }
@@ -127,8 +122,8 @@ private fun TabletScreen(
     val contentPlaceable = contentMeasurable.first().measure(constraints)
 
     return@SubcomposeLayout layout(width = constraints.maxWidth, height = constraints.maxHeight) {
-      contentPlaceable.place(x = 0, y = 0)
-      toolbarPlaceable?.place(x = 0, y = 0)
+      contentPlaceable.placeRelative(x = 0, y = 0)
+      toolbarPlaceable?.placeRelative(x = 0, y = 0)
       navigationBarPlaceable?.placeRelative(x = 0, y = 0)
     }
   }
@@ -138,28 +133,17 @@ private const val SlotToolbar = "Toolbar"
 private const val SlotNavigationBar = "NavigationBar"
 private const val SlotContent = "Content"
 
-@Preview(device = Devices.PHONE)
+// Preview
+
 @Composable
-private fun NickelScreenPreviewPhone() {
+internal fun NickelScreenPreview(modifier: Modifier = Modifier) {
   NickelTheme {
     NickelScreen(
       toolbar = { innerPadding ->
-        Box(
-          modifier = Modifier
-            .fillMaxWidth()
-            .height(MaterialTheme.nickelSizes.toolbar.height)
-            .padding(innerPadding)
-            .background(Color.Red)
-        )
+        NickelToolbarPreview(modifier = Modifier.padding(innerPadding))
       },
       navigationBar = { innerPadding ->
-        Box(
-          modifier = Modifier
-            .fillMaxWidth()
-            .height(MaterialTheme.nickelSizes.navigationBar.height)
-            .padding(innerPadding)
-            .background(Color.Blue)
-        )
+        NickelNavigationBarPreview(modifier = Modifier.padding(innerPadding))
       }
     ) { innerPadding ->
       Box(
@@ -172,36 +156,14 @@ private fun NickelScreenPreviewPhone() {
   }
 }
 
+@Preview(device = Devices.PHONE)
+@Composable
+private fun ScreenPreviewPhone() {
+  NickelScreenPreview()
+}
+
 @Preview(device = Devices.TABLET)
 @Composable
-private fun NickelScreenPreviewTablet() {
-  NickelTheme {
-    NickelScreen(
-      toolbar = { innerPadding ->
-        Box(
-          modifier = Modifier
-            .fillMaxWidth()
-            .height(MaterialTheme.nickelSizes.toolbar.height)
-            .padding(innerPadding)
-            .background(Color.Red)
-        )
-      },
-      navigationBar = { innerPadding ->
-        Box(
-          modifier = Modifier
-            .fillMaxHeight()
-            .width(MaterialTheme.nickelSizes.navigationBar.width)
-            .padding(innerPadding)
-            .background(Color.Blue)
-        )
-      }
-    ) { innerPadding ->
-      Box(
-        modifier = Modifier
-          .fillMaxSize()
-          .padding(innerPadding)
-          .background(Color.Green)
-      )
-    }
-  }
+private fun ScreenPreviewTablet() {
+  NickelScreenPreview()
 }

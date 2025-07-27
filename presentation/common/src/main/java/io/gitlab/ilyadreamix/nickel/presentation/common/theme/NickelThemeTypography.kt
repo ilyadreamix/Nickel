@@ -15,21 +15,22 @@ private val FontFamilyHankenGrotesk = FontFamily(
 )
 
 private val DefaultTypography = Typography()
-
-internal val NickelThemeTypography = Typography(
-  displayLarge = DefaultTypography.displayLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-  displayMedium = DefaultTypography.displayMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-  displaySmall = DefaultTypography.displaySmall.copy(fontFamily = FontFamilyHankenGrotesk),
-  headlineLarge = DefaultTypography.headlineLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-  headlineMedium = DefaultTypography.headlineMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-  headlineSmall = DefaultTypography.headlineSmall.copy(fontFamily = FontFamilyHankenGrotesk),
-  titleLarge = DefaultTypography.titleLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-  titleMedium = DefaultTypography.titleMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-  titleSmall = DefaultTypography.titleSmall.copy(fontFamily = FontFamilyHankenGrotesk),
-  bodyLarge = DefaultTypography.bodyLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-  bodyMedium = DefaultTypography.bodyMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-  bodySmall = DefaultTypography.bodySmall.copy(fontFamily = FontFamilyHankenGrotesk),
-  labelLarge = DefaultTypography.labelLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-  labelMedium = DefaultTypography.labelMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-  labelSmall = DefaultTypography.labelSmall.copy(fontFamily = FontFamilyHankenGrotesk),
-)
+internal val NickelThemeTypography = with(DefaultTypography) {
+  copy(
+    displayLarge = displayLarge.copy(fontFamily = FontFamilyHankenGrotesk),
+    displayMedium = displayMedium.copy(fontFamily = FontFamilyHankenGrotesk),
+    displaySmall = displaySmall.copy(fontFamily = FontFamilyHankenGrotesk),
+    headlineLarge = headlineLarge.copy(fontFamily = FontFamilyHankenGrotesk),
+    headlineMedium = headlineMedium.copy(fontFamily = FontFamilyHankenGrotesk),
+    headlineSmall = headlineSmall.copy(fontFamily = FontFamilyHankenGrotesk),
+    titleLarge = titleLarge.copy(fontFamily = FontFamilyHankenGrotesk),
+    titleMedium = titleMedium.copy(fontFamily = FontFamilyHankenGrotesk),
+    titleSmall = titleSmall.copy(fontFamily = FontFamilyHankenGrotesk),
+    bodyLarge = bodyLarge.copy(fontFamily = FontFamilyHankenGrotesk),
+    bodyMedium = bodyMedium.copy(fontFamily = FontFamilyHankenGrotesk),
+    bodySmall = bodySmall.copy(fontFamily = FontFamilyHankenGrotesk),
+    labelLarge = labelLarge.copy(fontFamily = FontFamilyHankenGrotesk),
+    labelMedium = labelMedium.copy(fontFamily = FontFamilyHankenGrotesk),
+    labelSmall = labelSmall.copy(fontFamily = FontFamilyHankenGrotesk),
+  )
+}

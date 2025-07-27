@@ -2,12 +2,14 @@ package io.gitlab.ilyadreamix.nickel.presentation.common.utility
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalConfiguration
 
 enum class ScreenType { Phone, Tablet }
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
+@ReadOnlyComposable
 fun getScreenType(): ScreenType {
   val configuration = LocalConfiguration.current
   val tabletScreenWidthDp = if (getOrientation() == Orientation.Landscape) {

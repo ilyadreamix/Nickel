@@ -21,7 +21,11 @@ data class NickelThemeSizes(
     val big: Dp
   )
 
-  data class Toolbar(val height: Dp)
+  data class Toolbar(
+    val height: Dp,
+    val verticalPadding: Dp,
+    val horizontalPadding: Dp
+  )
 
   data class NavigationBar(
     val width: Dp,
@@ -38,6 +42,7 @@ val MaterialTheme.nickelSizes
   get() = LocalNickelThemeSizes.current
 
 @Composable
+@ReadOnlyComposable
 internal fun getNickelThemeSizes(): NickelThemeSizes {
 
   val screenType = getScreenType()
@@ -68,25 +73,51 @@ private fun ScreenType.getCornerRadiusSizes() = when (this) {
 }
 
 private fun ScreenType.getToolbarSizes() = when (this) {
-  ScreenType.Phone -> NickelThemeSizes.Toolbar(height = 56.dp)
-  ScreenType.Tablet -> NickelThemeSizes.Toolbar(height = 72.dp)
+  ScreenType.Phone -> NickelThemeSizes.Toolbar(
+    height = PhoneToolbarHeight,
+    verticalPadding = PhoneToolbarVerticalPadding,
+    horizontalPadding = PhoneToolbarHorizontalPadding
+  )
+  ScreenType.Tablet -> NickelThemeSizes.Toolbar(
+    height = TabletToolbarHeight,
+    verticalPadding = TabletToolbarVerticalPadding,
+    horizontalPadding = TabletToolbarHorizontalPadding
+  )
 }
 
 private fun ScreenType.getNavigationBarSizes() = when (this) {
   ScreenType.Phone -> NickelThemeSizes.NavigationBar(
-    width = Dp.Unspecified,
-    height = 56.dp
+    width = PhoneNavigationBarWidth,
+    height = PhoneNavigationBarHeight
   )
   ScreenType.Tablet -> NickelThemeSizes.NavigationBar(
-    width = 72.dp,
-    height = Dp.Unspecified
+    width = TabletNavigationBarWidth,
+    height = TabletNavigationBarHeight
   )
 }
+
+// Phone sizes
 
 private val PhoneCornerRadiusSmall = 6.dp
 private val PhoneCornerRadiusMedium = 8.dp
 private val PhoneCornerRadiusBig = 12.dp
 
+private val PhoneToolbarHeight = 56.dp
+private val PhoneToolbarVerticalPadding = 4.dp
+private val PhoneToolbarHorizontalPadding = 8.dp
+
+private val PhoneNavigationBarWidth = Dp.Unspecified
+private val PhoneNavigationBarHeight = 56.dp
+
+// Tablet sizes
+
 private val TabletCornerRadiusSmall = 8.dp
 private val TabletCornerRadiusMedium = 12.dp
 private val TabletCornerRadiusBig = 16.dp
+
+private val TabletToolbarHeight = 72.dp
+private val TabletToolbarVerticalPadding = 8.dp
+private val TabletToolbarHorizontalPadding = 16.dp
+
+private val TabletNavigationBarWidth = 72.dp
+private val TabletNavigationBarHeight = Dp.Unspecified
