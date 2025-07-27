@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,6 +24,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.TextStyle
@@ -35,20 +36,22 @@ import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ui
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.windowInsetsPartialPadding
 
 @Composable
 fun NickelToolbar(
   modifier: Modifier = Modifier,
+  color: Color = MaterialTheme.colorScheme.surface,
+  contentColor: Color = MaterialTheme.colorScheme.onSurface,
   leadingActions: (@Composable RowScope.() -> Unit)? = null,
   title: (@Composable () -> Unit)? = null,
   trailingActions: (@Composable RowScope.() -> Unit)? = null,
 ) {
   Surface(
-    modifier = modifier
-      .fillMaxWidth()
-      .height(MaterialTheme.nickelSizes.toolbar.height),
-    color = MaterialTheme.colorScheme.surface,
-    contentColor = MaterialTheme.colorScheme.onSurface
+    modifier = modifier.fillMaxWidth(),
+    color = color,
+    contentColor = contentColor
   ) {
     val leadingActionsContent: (@Composable (Modifier) -> Unit)? = if (leadingActions == null) null else { innerModifier ->
       ToolbarActions(
@@ -75,7 +78,14 @@ fun NickelToolbar(
 
     ToolbarLayout(
       modifier = Modifier
-        .fillMaxSize()
+        .fillMaxWidth()
+        .windowInsetsPartialPadding(
+          windowInsets = WindowInsets.ui,
+          top = true,
+          start = true,
+          end = true
+        )
+        .height(MaterialTheme.nickelSizes.toolbar.height)
         .padding(
           vertical = MaterialTheme.nickelSizes.toolbar.verticalPadding,
           horizontal = MaterialTheme.nickelSizes.toolbar.horizontalPadding

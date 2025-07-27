@@ -1,6 +1,5 @@
 package io.gitlab.ilyadreamix.nickel.presentation.root
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -12,15 +11,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import io.gitlab.ilyadreamix.nickel.presentation.common.R
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
+import io.gitlab.ilyadreamix.nickel.presentation.common.ui.NickelScreen
+import io.gitlab.ilyadreamix.nickel.presentation.common.ui.NickelToolbar
+import android.graphics.Color as LegacyColor
 
 class RootActivity : ComponentActivity() {
 
@@ -28,12 +30,12 @@ class RootActivity : ComponentActivity() {
     installSplashScreen()
     enableEdgeToEdge(
       statusBarStyle = SystemBarStyle.auto(
-        lightScrim = Color.TRANSPARENT,
-        darkScrim = Color.TRANSPARENT
+        lightScrim = LegacyColor.TRANSPARENT,
+        darkScrim = LegacyColor.TRANSPARENT
       ),
       navigationBarStyle = SystemBarStyle.auto(
-        lightScrim = Color.TRANSPARENT,
-        darkScrim = Color.TRANSPARENT
+        lightScrim = LegacyColor.TRANSPARENT,
+        darkScrim = LegacyColor.TRANSPARENT
       )
     )
 
@@ -41,7 +43,24 @@ class RootActivity : ComponentActivity() {
 
     setContent {
       NickelTheme {
-        Scaffold { innerPadding ->
+        NickelScreen(
+          color = Color.Blue,
+          contentColor = Color.White,
+          toolbar = { innerPadding ->
+            NickelToolbar(
+              color = Color.Red,
+              contentColor = Color.White,
+              title = {
+                Image(
+                  painter = painterResource(R.drawable.presentation_common_app_logo),
+                  contentDescription = null,
+                  colorFilter = ColorFilter.tint(color = LocalContentColor.current),
+                  modifier = Modifier.padding(16.dp)
+                )
+              }
+            )
+          }
+        ) { innerPadding ->
           Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier

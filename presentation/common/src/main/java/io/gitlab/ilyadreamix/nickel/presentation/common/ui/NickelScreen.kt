@@ -21,6 +21,8 @@ import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 @Composable
 fun NickelScreen(
   modifier: Modifier = Modifier,
+  color: Color = MaterialTheme.colorScheme.background,
+  contentColor: Color = MaterialTheme.colorScheme.onBackground,
   toolbar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
   navigationBar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
   content: @Composable (innerPadding: PaddingValues) -> Unit,
@@ -30,8 +32,8 @@ fun NickelScreen(
 
   Surface(
     modifier = modifier,
-    color = MaterialTheme.colorScheme.background,
-    contentColor = MaterialTheme.colorScheme.onBackground
+    color = color,
+    contentColor = contentColor
   ) {
     when (screenType) {
       ScreenType.Phone -> PhoneScreen(
