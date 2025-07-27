@@ -1,20 +1,18 @@
 package io.gitlab.ilyadreamix.nickel.presentation.common.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.SubcomposeLayout
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 
@@ -30,18 +28,18 @@ fun NickelScreen(
 
   val screenType = getScreenType()
 
-  Surface(
+  NickelSurface(
     modifier = modifier,
     color = color,
     contentColor = contentColor
   ) {
     when (screenType) {
-      ScreenType.Phone -> PhoneScreen(
+      ScreenType.Phone -> PhoneScreenLayout(
         toolbar = toolbar,
         navigationBar = navigationBar,
         content = content
       )
-      ScreenType.Tablet -> TabletScreen(
+      ScreenType.Tablet -> TabletScreenLayout(
         toolbar = toolbar,
         navigationBar = navigationBar,
         content = content
@@ -51,11 +49,11 @@ fun NickelScreen(
 }
 
 @Composable
-private fun PhoneScreen(
-  modifier: Modifier = Modifier,
-  toolbar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
-  navigationBar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
+private fun PhoneScreenLayout(
+  toolbar: (@Composable (innerPadding: PaddingValues) -> Unit)?,
+  navigationBar: (@Composable (innerPadding: PaddingValues) -> Unit)?,
   content: @Composable (innerPadding: PaddingValues) -> Unit,
+  modifier: Modifier = Modifier,
 ) {
   SubcomposeLayout(modifier = modifier) { constraints ->
     val toolbarMeasurables = if (toolbar != null) {
@@ -94,11 +92,11 @@ private fun PhoneScreen(
 }
 
 @Composable
-private fun TabletScreen(
-  modifier: Modifier = Modifier,
-  toolbar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
-  navigationBar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
+private fun TabletScreenLayout(
+  toolbar: (@Composable (innerPadding: PaddingValues) -> Unit)?,
+  navigationBar: (@Composable (innerPadding: PaddingValues) -> Unit)?,
   content: @Composable (innerPadding: PaddingValues) -> Unit,
+  modifier: Modifier = Modifier,
 ) {
   SubcomposeLayout(modifier = modifier) { constraints ->
     val navigationBarMeasurables = if (navigationBar != null) {
@@ -152,19 +150,18 @@ internal fun NickelScreenPreview(modifier: Modifier = Modifier) {
         modifier = Modifier
           .fillMaxSize()
           .padding(innerPadding)
-          .background(Color.Green)
       )
     }
   }
 }
 
-@Preview(device = Devices.PHONE)
+@NickelPreviewPhone
 @Composable
 private fun ScreenPreviewPhone() {
   NickelScreenPreview()
 }
 
-@Preview(device = Devices.TABLET)
+@NickelPreviewTablet
 @Composable
 private fun ScreenPreviewTablet() {
   NickelScreenPreview()

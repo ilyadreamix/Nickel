@@ -11,11 +11,13 @@ fun NickelTheme(content: @Composable () -> Unit) {
   val colorScheme = getNickelThemeColorScheme()
   val nickelSizes = getNickelThemeSizes()
 
-  CompositionLocalProvider(LocalNickelThemeSizes provides nickelSizes) {
-    MaterialTheme(
-      colorScheme = colorScheme,
-      motionScheme = NickelThemeMotionScheme,
-      typography = NickelThemeTypography,
+  MaterialTheme(
+    colorScheme = colorScheme,
+    motionScheme = NickelThemeMotionScheme,
+    typography = NickelThemeTypography,
+  ) {
+    CompositionLocalProvider(
+      value = LocalNickelThemeSizes provides nickelSizes,
       content = content
     )
   }

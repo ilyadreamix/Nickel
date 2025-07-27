@@ -9,15 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -29,11 +23,15 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.util.fastFirstOrNull
+import com.composables.icons.lucide.Check
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.Share
+import io.gitlab.ilyadreamix.nickel.presentation.common.lucide.NavigateBack
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ui
@@ -48,7 +46,7 @@ fun NickelToolbar(
   title: (@Composable () -> Unit)? = null,
   trailingActions: (@Composable RowScope.() -> Unit)? = null,
 ) {
-  Surface(
+  NickelSurface(
     modifier = modifier.fillMaxWidth(),
     color = color,
     contentColor = contentColor
@@ -78,7 +76,6 @@ fun NickelToolbar(
 
     ToolbarLayout(
       modifier = Modifier
-        .fillMaxWidth()
         .windowInsetsPartialPadding(
           windowInsets = WindowInsets.ui,
           top = true,
@@ -100,12 +97,12 @@ fun NickelToolbar(
 @Composable
 private fun ToolbarLayout(
   modifier: Modifier = Modifier,
-  title: (@Composable (innerModifier: Modifier) -> Unit)? = null,
-  leadingActions: (@Composable (innerModifier: Modifier) -> Unit)? = null,
-  trailingActions: (@Composable (innerModifier: Modifier) -> Unit)? = null,
+  title: (@Composable (innerModifier: Modifier) -> Unit)?,
+  leadingActions: (@Composable (innerModifier: Modifier) -> Unit)?,
+  trailingActions: (@Composable (innerModifier: Modifier) -> Unit)?,
 ) {
   Layout(
-    modifier = modifier,
+    modifier = modifier.fillMaxWidth(),
     content = {
       if (leadingActions != null) {
         val innerModifier = Modifier.layoutId(LayoutIdLeadingActions)
@@ -194,27 +191,15 @@ private val TitleTextStyle
 
 // Preview
 
-@Preview(device = Devices.PHONE)
-@Composable
-private fun ToolbarPreviewPhone() {
-  NickelToolbarPreview()
-}
-
-@Preview(device = Devices.TABLET)
-@Composable
-private fun ToolbarPreviewTablet() {
-  NickelToolbarPreview()
-}
-
 @Composable
 internal fun NickelToolbarPreview(modifier: Modifier = Modifier) {
   NickelTheme {
     NickelToolbar(
       modifier = modifier,
       leadingActions = {
-        IconButton(onClick = {}) {
+        NickelIconButton(onClick = {}) {
           Icon(
-            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+            imageVector = Lucide.NavigateBack,
             contentDescription = null
           )
         }
@@ -223,20 +208,32 @@ internal fun NickelToolbarPreview(modifier: Modifier = Modifier) {
         Text(text = "NickelToolbar")
       },
       trailingActions = {
-        IconButton(onClick = {}) {
+        NickelIconButton(onClick = {}) {
           Icon(
-            imageVector = Icons.Filled.Share,
+            imageVector = Lucide.Share,
             contentDescription = null
           )
         }
 
-        IconButton(onClick = {}) {
+        NickelIconButton(onClick = {}) {
           Icon(
-            imageVector = Icons.Filled.Done,
+            imageVector = Lucide.Check,
             contentDescription = null
           )
         }
       }
     )
   }
+}
+
+@NickelPreviewPhone
+@Composable
+private fun ToolbarPreviewPhone() {
+  NickelToolbarPreview()
+}
+
+@NickelPreviewTablet
+@Composable
+private fun ToolbarPreviewTablet() {
+  NickelToolbarPreview()
 }

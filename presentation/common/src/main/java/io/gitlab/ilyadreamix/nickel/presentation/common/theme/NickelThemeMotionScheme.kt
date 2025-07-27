@@ -12,9 +12,9 @@ internal object NickelThemeMotionScheme : MotionScheme {
   private const val AnimationDurationDefault = 300
   private const val AnimationDurationSlow = 400
 
-  private val fastSpec = tween<Any>(durationMillis = AnimationDurationFast)
-  private val defaultSpec = tween<Any>(durationMillis = AnimationDurationDefault)
-  private val slowSpec = tween<Any>(durationMillis = AnimationDurationSlow)
+  val fastSpec = tween<Any>(durationMillis = AnimationDurationFast)
+  val defaultSpec = tween<Any>(durationMillis = AnimationDurationDefault)
+  val slowSpec = tween<Any>(durationMillis = AnimationDurationSlow)
 
   override fun <T> fastSpatialSpec() = fastSpec as FiniteAnimationSpec<T>
   override fun <T> defaultSpatialSpec() = defaultSpec as FiniteAnimationSpec<T>
