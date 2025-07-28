@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -33,8 +32,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import com.composables.icons.lucide.Image
 import com.composables.icons.lucide.Lucide
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelIndicationPressStrength
+import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.rememberNickelIndication
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
@@ -194,14 +193,16 @@ class NickelNavigationBarScope internal constructor(internal val parent: Parent)
     isChecked: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    text: (@Composable () -> Unit)? = null,
-    icon: (@Composable () -> Unit)? = null,
+    text: @Composable () -> Unit,
+    icon: @Composable () -> Unit,
   ) {
     NickelSurface(
       onClick = onClick,
-      modifier = modifier.size(MaterialTheme.nickelSizes.navigationBar.itemSize),
+      modifier = modifier
+        .height(MaterialTheme.nickelSizes.navigationBar.itemHeight)
+        .width(MaterialTheme.nickelSizes.navigationBar.itemWidth),
       color = if (isChecked) MaterialTheme.colorScheme.primary else Color.Transparent,
-      contentColor = if (isChecked) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+      contentColor = if (isChecked) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary,
       shape = RoundedCornerShape(MaterialTheme.nickelSizes.cornerRadius.small),
       indication = rememberNickelIndication(pressStrength = NickelIndicationPressStrength.Soft)
     ) {
@@ -209,26 +210,18 @@ class NickelNavigationBarScope internal constructor(internal val parent: Parent)
         modifier = Modifier
           .fillMaxSize()
           .padding(MaterialTheme.nickelSizes.navigationBar.itemPadding),
-        verticalArrangement = if (text != null && icon != null) {
-          Arrangement.SpaceBetween
-        } else {
-          Arrangement.Center
-        },
+        verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
-        if (icon != null) {
-          NickelFixedSizeLayout(
-            size = MaterialTheme.nickelSizes.navigationBar.iconSize,
-            content = icon
-          )
-        }
+        NickelFixedSizeLayout(
+          size = MaterialTheme.nickelSizes.navigationBar.iconSize,
+          content = icon
+        )
 
-        if (text != null) {
-          CompositionLocalProvider(
-            value = LocalTextStyle provides getItemTitleTextStyle(isChecked),
-            content = text
-          )
-        }
+        CompositionLocalProvider(
+          value = LocalTextStyle provides getItemTitleTextStyle(isChecked),
+          content = text
+        )
       }
     }
   }

@@ -8,13 +8,13 @@ import androidx.compose.material3.MotionScheme
 @Suppress("UNCHECKED_CAST")
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 internal object NickelThemeMotionScheme : MotionScheme {
-  private const val AnimationDurationFast = 200
-  private const val AnimationDurationDefault = 300
-  private const val AnimationDurationSlow = 400
+  private const val DurationFast = 200
+  private const val DurationDefault = 300
+  private const val DurationSlow = 400
 
-  val fastSpec = tween<Any>(durationMillis = AnimationDurationFast)
-  val defaultSpec = tween<Any>(durationMillis = AnimationDurationDefault)
-  val slowSpec = tween<Any>(durationMillis = AnimationDurationSlow)
+  private val fastSpec = tween<Any>(durationMillis = DurationFast)
+  private val defaultSpec = tween<Any>(durationMillis = DurationDefault)
+  private val slowSpec = tween<Any>(durationMillis = DurationSlow)
 
   override fun <T> fastSpatialSpec() = fastSpec as FiniteAnimationSpec<T>
   override fun <T> defaultSpatialSpec() = defaultSpec as FiniteAnimationSpec<T>

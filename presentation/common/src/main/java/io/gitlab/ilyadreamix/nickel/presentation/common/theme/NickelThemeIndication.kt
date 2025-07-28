@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.node.DelegatableNode
 import androidx.compose.ui.node.DrawModifierNode
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.joinAll
@@ -32,12 +33,14 @@ enum class NickelIndicationPressStrength(internal val value: Float) {
 @Composable
 fun rememberNickelIndication(
   pressStrength: NickelIndicationPressStrength = NickelIndicationPressStrength.Normal,
+  fadeOnPress: Boolean = true,
   animationSpec: AnimationSpec<Float> = MaterialTheme.motionScheme.defaultEffectsSpec()
 ): IndicationNodeFactory {
-  return remember(pressStrength, animationSpec) {
+  return remember(pressStrength, animationSpec, fadeOnPress) {
     ScaleIndicationNodeFactory(
       animationSpec = animationSpec,
-      pressedScale = pressStrength.value
+      pressedScale = pressStrength.value,
+      fadeOnPress = fadeOnPress
     )
   }
 }
@@ -45,14 +48,16 @@ fun rememberNickelIndication(
 @Stable
 private class ScaleIndicationNodeFactory(
   private val animationSpec: AnimationSpec<Float>,
-  private val pressedScale: Float
+  private val pressedScale: Float,
+  private val fadeOnPress: Boolean,
 ) : IndicationNodeFactory {
 
   override fun create(interactionSource: InteractionSource): DelegatableNode =
     ScaleIndicationNode(
       interactionSource = interactionSource,
       animationSpec = animationSpec,
-      pressedScale = pressedScale
+      pressedScale = pressedScale,
+      fadeOnPress = fadeOnPress
     )
 
   override fun equals(other: Any?): Boolean {
@@ -62,6 +67,7 @@ private class ScaleIndicationNodeFactory(
     other as ScaleIndicationNodeFactory
 
     if (pressedScale != other.pressedScale) return false
+    if (fadeOnPress != other.fadeOnPress) return false
     if (animationSpec != other.animationSpec) return false
 
     return true
@@ -69,6 +75,7 @@ private class ScaleIndicationNodeFactory(
 
   override fun hashCode(): Int {
     var result = pressedScale.hashCode()
+    result = 31 * result + fadeOnPress.hashCode()
     result = 31 * result + animationSpec.hashCode()
     return result
   }
@@ -77,22 +84,33 @@ private class ScaleIndicationNodeFactory(
 private class ScaleIndicationNode(
   private val interactionSource: InteractionSource,
   private val animationSpec: AnimationSpec<Float>,
-  private val pressedScale: Float
+  private val pressedScale: Float,
+  private val fadeOnPress: Boolean
 ) : Modifier.Node(), DrawModifierNode {
 
   private val scaleAnimatable = Animatable(1f)
   private val alphaAnimatable = Animatable(1f)
 
   private suspend fun animateToPressed() = coroutineScope {
-    val alphaJob = launch { scaleAnimatable.animateTo(targetValue = pressedScale, animationSpec = animationSpec) }
-    val scaleJob = launch { alphaAnimatable.animateTo(targetValue = 0.75f, animationSpec = animationSpec) }
-    joinAll(scaleJob, alphaJob)
+    val jobs = mutableListOf<Job>()
+    jobs += launch { scaleAnimatable.animateTo(targetValue = pressedScale, animationSpec = animationSpec) }
+
+    if (fadeOnPress) {
+      jobs += launch { alphaAnimatable.animateTo(targetValue = 0.75f, animationSpec = animationSpec) }
+    }
+
+    jobs.joinAll()
   }
 
   private suspend fun animateToReleased() = coroutineScope {
-    val alphaJob = launch { scaleAnimatable.animateTo(targetValue = 1f, animationSpec = animationSpec) }
-    val scaleJob = launch { alphaAnimatable.animateTo(targetValue = 1f, animationSpec = animationSpec) }
-    joinAll(scaleJob, alphaJob)
+    val jobs = mutableListOf<Job>()
+    jobs += launch { scaleAnimatable.animateTo(targetValue = 1f, animationSpec = animationSpec) }
+
+    if (fadeOnPress) {
+      jobs += launch { alphaAnimatable.animateTo(targetValue = 1f, animationSpec = animationSpec) }
+    }
+
+    jobs.joinAll()
   }
 
   override fun onAttach() {

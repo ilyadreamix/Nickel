@@ -6,7 +6,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.isSpecified
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 
@@ -35,14 +34,10 @@ data class NickelThemeSizes(
     val padding: Dp,
     val spacing: Dp,
     val itemPadding: Dp,
-    val iconSize: Dp
-  ) {
-    val itemSize = if (width.isSpecified) {
-      width - padding * 2
-    } else {
-      height - padding * 2
-    }
-  }
+    val iconSize: Dp,
+    val itemHeight: Dp,
+    val itemWidth: Dp
+  )
 
   data class IconButton(
     val containerSize: Dp,
@@ -110,6 +105,8 @@ private fun ScreenType.getNavigationBarSizes() = when (this) {
     height = PhoneNavigationBarHeight,
     padding = PhoneNavigationBarPadding,
     spacing = PhoneNavigationBarSpacing,
+    itemHeight = PhoneNavigationBarItemHeight,
+    itemWidth = PhoneNavigationBarItemWidth,
     itemPadding = PhoneNavigationBarItemPadding,
     iconSize = PhoneNavigationBarIconSize
   )
@@ -118,6 +115,8 @@ private fun ScreenType.getNavigationBarSizes() = when (this) {
     height = TabletNavigationBarHeight,
     padding = TabletNavigationBarPadding,
     spacing = TabletNavigationBarSpacing,
+    itemHeight = TabletNavigationBarItemHeight,
+    itemWidth = TabletNavigationBarItemWidth,
     itemPadding = TabletNavigationBarItemPadding,
     iconSize = TabletIconButtonSize
   )
@@ -145,10 +144,12 @@ private val PhoneToolbarVerticalPadding = 4.dp
 private val PhoneToolbarHorizontalPadding = 8.dp
 
 private val PhoneNavigationBarWidth = Dp.Unspecified
-private val PhoneNavigationBarHeight = 72.dp
+private val PhoneNavigationBarHeight = 64.dp
 private val PhoneNavigationBarPadding = 8.dp
 private val PhoneNavigationBarSpacing = Dp.Unspecified
-private val PhoneNavigationBarItemPadding = 6.dp
+private val PhoneNavigationBarItemWidth = 78.dp
+private val PhoneNavigationBarItemHeight = 56.dp
+private val PhoneNavigationBarItemPadding = 4.dp
 private val PhoneNavigationBarIconSize = 24.dp
 
 private val PhoneIconButtonContainerSize = 48.dp
@@ -164,10 +165,12 @@ private val TabletToolbarHeight = 72.dp
 private val TabletToolbarVerticalPadding = 8.dp
 private val TabletToolbarHorizontalPadding = 16.dp
 
-private val TabletNavigationBarWidth = 82.dp
+private val TabletNavigationBarWidth = 100.dp
 private val TabletNavigationBarHeight = Dp.Unspecified
 private val TabletNavigationBarPadding = 10.dp
 private val TabletNavigationBarSpacing = 10.dp
+private val TabletNavigationBarItemWidth = 80.dp
+private val TabletNavigationBarItemHeight = 58.dp
 private val TabletNavigationBarItemPadding = 6.dp
 private val TabletNavigationBarIconSize = 26.dp
 
