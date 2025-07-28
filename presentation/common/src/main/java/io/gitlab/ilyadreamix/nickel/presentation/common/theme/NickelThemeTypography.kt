@@ -7,30 +7,30 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import io.gitlab.ilyadreamix.nickel.presentation.common.R
 
-private val FontFamilyHankenGrotesk = FontFamily(
-  Font(resId = R.font.presentation_common_hanken_grotesk_regular),
-  Font(resId = R.font.presentation_common_hanken_grotesk_regular_italic, style = FontStyle.Italic),
-  Font(resId = R.font.presentation_common_hanken_grotesk_bold, weight = FontWeight.Bold),
-  Font(resId = R.font.presentation_common_hanken_grotesk_bold_italic, weight = FontWeight.Bold, style = FontStyle.Italic)
+private val FontFamilyInter = FontFamily(
+  Font(resId = R.font.presentation_common_inter_regular),
+  Font(resId = R.font.presentation_common_inter_italic, style = FontStyle.Italic),
+  Font(resId = R.font.presentation_common_inter_bold, weight = FontWeight.Bold),
+  Font(resId = R.font.presentation_common_inter_bold_italic, weight = FontWeight.Bold, style = FontStyle.Italic)
 )
 
 private val DefaultTypography = Typography()
 internal val NickelThemeTypography = with(DefaultTypography) {
   copy(
-    displayLarge = displayLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-    displayMedium = displayMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-    displaySmall = displaySmall.copy(fontFamily = FontFamilyHankenGrotesk),
-    headlineLarge = headlineLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-    headlineMedium = headlineMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-    headlineSmall = headlineSmall.copy(fontFamily = FontFamilyHankenGrotesk),
-    titleLarge = titleLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-    titleMedium = titleMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-    titleSmall = titleSmall.copy(fontFamily = FontFamilyHankenGrotesk),
-    bodyLarge = bodyLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-    bodyMedium = bodyMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-    bodySmall = bodySmall.copy(fontFamily = FontFamilyHankenGrotesk),
-    labelLarge = labelLarge.copy(fontFamily = FontFamilyHankenGrotesk),
-    labelMedium = labelMedium.copy(fontFamily = FontFamilyHankenGrotesk),
-    labelSmall = labelSmall.copy(fontFamily = FontFamilyHankenGrotesk),
+    displayLarge = displayLarge.copy(fontFamily = FontFamilyInter),
+    displayMedium = displayMedium.copy(fontFamily = FontFamilyInter),
+    displaySmall = displaySmall.copy(fontFamily = FontFamilyInter),
+    headlineLarge = headlineLarge.copy(fontFamily = FontFamilyInter),
+    headlineMedium = headlineMedium.copy(fontFamily = FontFamilyInter),
+    headlineSmall = headlineSmall.copy(fontFamily = FontFamilyInter),
+    titleLarge = titleLarge.copy(fontFamily = FontFamilyInter),
+    titleMedium = titleMedium.copy(fontFamily = FontFamilyInter),
+    titleSmall = titleSmall.copy(fontFamily = FontFamilyInter),
+    bodyLarge = bodyLarge.copy(fontFamily = FontFamilyInter),
+    bodyMedium = bodyMedium.copy(fontFamily = FontFamilyInter),
+    bodySmall = bodySmall.copy(fontFamily = FontFamilyInter),
+    labelLarge = labelLarge.copy(fontFamily = FontFamilyInter),
+    labelMedium = labelMedium.copy(fontFamily = FontFamilyInter),
+    labelSmall = labelSmall.copy(fontFamily = FontFamilyInter),
   )
 }

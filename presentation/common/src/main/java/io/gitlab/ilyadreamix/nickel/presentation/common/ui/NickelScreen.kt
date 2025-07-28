@@ -108,6 +108,9 @@ private fun TabletScreenLayout(
   content: @Composable (innerPadding: PaddingValues) -> Unit,
   modifier: Modifier = Modifier,
 ) {
+
+  val insetsPadding = WindowInsets.ui.asPaddingValues()
+
   SubcomposeLayout(modifier = modifier) { constraints ->
     val navigationBarMeasurables = if (navigationBar != null) {
       subcompose(slotId = SlotNavigationBar) { navigationBar(PaddingValues.Zero) }
@@ -126,7 +129,8 @@ private fun TabletScreenLayout(
 
     val contentPadding = PaddingValues(
       top = toolbarPlaceable?.height?.toDp() ?: 0.dp,
-      start = navigationBarPlaceable?.width?.toDp() ?: 0.dp
+      start = navigationBarPlaceable?.width?.toDp() ?: 0.dp,
+      end = insetsPadding.calculateEndPadding(layoutDirection)
     )
     val contentMeasurable = subcompose(slotId = SlotContent) { content(contentPadding) }
     val contentPlaceable = contentMeasurable.first().measure(constraints)

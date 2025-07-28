@@ -172,4 +172,4 @@ private val TabletNavigationBarItemPadding = 6.dp
 private val TabletNavigationBarIconSize = 26.dp
 
 private val TabletIconButtonContainerSize = 56.dp
-private val TabletIconButtonSize = 24.dp
+private val TabletIconButtonSize = 28.dp
