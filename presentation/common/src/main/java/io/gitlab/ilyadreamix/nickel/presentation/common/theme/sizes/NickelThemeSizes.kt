@@ -15,7 +15,7 @@ data class NickelThemeSizes(
   val iconButton: NickelThemeSizesIconButton
 )
 
-internal val LocalNickelThemeSizes = staticCompositionLocalOf<NickelThemeSizes> { throw IllegalStateException() }
+val LocalNickelThemeSizes = staticCompositionLocalOf<NickelThemeSizes> { throw IllegalStateException() }
 
 @Suppress("UnusedReceiverParameter")
 val MaterialTheme.nickelSizes
@@ -25,7 +25,7 @@ val MaterialTheme.nickelSizes
 
 @Composable
 @ReadOnlyComposable
-internal fun getNickelThemeSizes(): NickelThemeSizes {
+internal fun getDefaultNickelThemeSizes(): NickelThemeSizes {
 
   val screenType = getScreenType()
 

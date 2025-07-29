@@ -6,13 +6,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.LocalNickelThemeSizes
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.getNickelThemeSizes
+import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.getDefaultNickelThemeSizes
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun NickelTheme(content: @Composable () -> Unit) {
-  val colorScheme = getNickelThemeColorScheme()
-  val nickelSizes = getNickelThemeSizes()
+  val colorScheme = getDefaultNickelThemeColorScheme()
+  val nickelSizes = getDefaultNickelThemeSizes()
   val indication = rememberNickelIndication()
 
   MaterialTheme(

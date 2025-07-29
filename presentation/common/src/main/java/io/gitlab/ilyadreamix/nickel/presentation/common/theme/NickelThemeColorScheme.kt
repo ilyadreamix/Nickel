@@ -50,7 +50,7 @@ internal val NickelDarkColorScheme = darkColorScheme(
 
 @Composable
 @ReadOnlyComposable
-internal fun getNickelThemeColorScheme(): ColorScheme {
+internal fun getDefaultNickelThemeColorScheme(): ColorScheme {
   val colorScheme = if (isSystemInDarkTheme()) {
     NickelDarkColorScheme
   } else {

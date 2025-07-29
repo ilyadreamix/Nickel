@@ -1,12 +1,13 @@
 package io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes
 
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.square
 
 data class NickelThemeSizesIconButton(
-  val containerSize: Dp,
-  val size: Dp
+  val containerSize: DpSize,
+  val size: DpSize
 )
 
 internal fun ScreenType.getIconButtonSizes() = when (this) {
@@ -20,8 +21,8 @@ internal fun ScreenType.getIconButtonSizes() = when (this) {
   )
 }
 
-private val PhoneContainerSize = 48.dp
-private val PhoneSize = 24.dp
+private val PhoneContainerSize = 48.dp.square
+private val PhoneSize = 24.dp.square
 
-private val TabletContainerSize = 56.dp
-private val TabletSize = 28.dp
+private val TabletContainerSize = 56.dp.square
+private val TabletSize = 28.dp.square

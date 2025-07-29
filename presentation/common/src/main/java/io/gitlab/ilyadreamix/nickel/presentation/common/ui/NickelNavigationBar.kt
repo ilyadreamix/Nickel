@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -100,8 +101,8 @@ private fun PhoneNavigationBar(
             start = true,
             end = true
           )
-          .height(MaterialTheme.nickelSizes.navigationBar.height)
-          .padding(vertical = MaterialTheme.nickelSizes.navigationBar.padding),
+          .height(MaterialTheme.nickelSizes.navigationBar.size.height)
+          .padding(MaterialTheme.nickelSizes.navigationBar.padding),
         content = content
       )
     }
@@ -150,7 +151,7 @@ private fun TabletNavigationBar(
             start = true,
             top = true
           )
-          .width(MaterialTheme.nickelSizes.navigationBar.width)
+          .width(MaterialTheme.nickelSizes.navigationBar.size.width)
           .padding(MaterialTheme.nickelSizes.navigationBar.padding),
         content = content
       )
@@ -198,9 +199,7 @@ class NickelNavigationBarScope internal constructor(internal val parent: Parent)
   ) {
     NickelSurface(
       onClick = onClick,
-      modifier = modifier
-        .height(MaterialTheme.nickelSizes.navigationBar.itemHeight)
-        .width(MaterialTheme.nickelSizes.navigationBar.itemWidth),
+      modifier = modifier.size(MaterialTheme.nickelSizes.navigationBar.itemSize),
       color = if (isChecked) MaterialTheme.colorScheme.primary else Color.Transparent,
       contentColor = if (isChecked) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary,
       shape = RoundedCornerShape(MaterialTheme.nickelSizes.cornerRadius.small),
@@ -214,7 +213,7 @@ class NickelNavigationBarScope internal constructor(internal val parent: Parent)
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
         NickelFixedSizeLayout(
-          size = MaterialTheme.nickelSizes.navigationBar.iconSize,
+          size = MaterialTheme.nickelSizes.navigationBar.itemIconSize,
           content = icon
         )
 
@@ -334,3 +333,5 @@ private fun NavigationBarPreviewPhone() {
 private fun NavigationBarTablet() {
   NickelNavigationBarPreview()
 }
+
+

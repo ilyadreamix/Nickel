@@ -2,57 +2,50 @@ package io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.square
+import io.gitlab.ilyadreamix.nickel.presentation.common.utility.withHeight
 
 data class NickelThemeSizesNavigationBar(
-  val width: Dp,
-  val height: Dp,
-  val padding: Dp,
+  val size: DpSize,
+  val padding: PaddingValues,
   val spacing: Dp,
   val itemPadding: PaddingValues,
-  val iconSize: Dp,
-  val itemHeight: Dp,
-  val itemWidth: Dp
+  val itemIconSize: DpSize,
+  val itemSize: DpSize
 )
 
 internal fun ScreenType.getNavigationBarSizes() = when (this) {
   ScreenType.Phone -> NickelThemeSizesNavigationBar(
-    width = PhoneWidth,
-    height = PhoneHeight,
+    size = PhoneSize,
     padding = PhonePadding,
     spacing = PhoneSpacing,
     itemPadding = PhoneItemPadding,
-    iconSize = PhoneIconSize,
-    itemHeight = PhoneItemHeight,
-    itemWidth = PhoneItemWidth
+    itemIconSize = PhoneItemIconSize,
+    itemSize = PhoneItemSize
   )
   ScreenType.Tablet -> NickelThemeSizesNavigationBar(
-    width = TabletWidth,
-    height = TabletHeight,
+    size = TabletSize,
     padding = TabletPadding,
     spacing = TabletSpacing,
     itemPadding = TabletItemPadding,
-    iconSize = TabletIconSize,
-    itemHeight = TabletItemHeight,
-    itemWidth = TabletItemWidth
+    itemIconSize = TabletItemIconSize,
+    itemSize = TabletItemSize
   )
 }
 
-private val PhoneWidth = Dp.Unspecified
-private val PhoneHeight = 64.dp
-private val PhonePadding = 8.dp
+private val PhoneSize = Dp.Unspecified withHeight 64.dp
+private val PhonePadding = PaddingValues(8.dp)
 private val PhoneSpacing = Dp.Unspecified
 private val PhoneItemPadding = PaddingValues(4.dp)
-private val PhoneIconSize = 24.dp
-private val PhoneItemHeight = 56.dp
-private val PhoneItemWidth = 78.dp
+private val PhoneItemIconSize = 24.dp.square
+private val PhoneItemSize = 56.dp withHeight 78.dp
 
-private val TabletWidth = 100.dp
-private val TabletHeight = Dp.Unspecified
-private val TabletPadding = 10.dp
+private val TabletSize = 100.dp withHeight Dp.Unspecified
+private val TabletPadding = PaddingValues(10.dp)
 private val TabletSpacing = 10.dp
 private val TabletItemPadding = PaddingValues(6.dp)
-private val TabletIconSize = 26.dp
-private val TabletItemHeight = 58.dp
-private val TabletItemWidth = 80.dp
+private val TabletItemIconSize = 26.dp.square
+private val TabletItemSize = 80.dp withHeight 58.dp

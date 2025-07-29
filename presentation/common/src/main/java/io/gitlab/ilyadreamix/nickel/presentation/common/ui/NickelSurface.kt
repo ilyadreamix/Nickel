@@ -61,8 +61,8 @@ fun NickelSurface(
         onClick = onClick,
         onLongClick = {
           if (onLongClick != null) {
-            hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
             onLongClick()
+            hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
           }
         },
         interactionSource = finalInteractionSource,
