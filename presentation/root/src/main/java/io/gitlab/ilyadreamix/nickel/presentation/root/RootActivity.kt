@@ -27,7 +27,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.composables.icons.lucide.Check
 import com.composables.icons.lucide.Download
 import com.composables.icons.lucide.HandCoins
-import com.composables.icons.lucide.Image
 import com.composables.icons.lucide.Info
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Settings
@@ -103,7 +102,7 @@ class RootActivity : ComponentActivity() {
           },
           navigationBar = {
             NickelNavigationBar {
-              Item(
+              NickelNavigationBarItem(
                 text = {
                   Text(
                     text = "Загрузка",
@@ -122,7 +121,7 @@ class RootActivity : ComponentActivity() {
                 onClick = { checkedIndex.intValue = 0 }
               )
 
-              Item(
+              NickelNavigationBarItem(
                 text = {
                   Text(
                     text = "Настройки",
@@ -141,9 +140,9 @@ class RootActivity : ComponentActivity() {
                 onClick = { checkedIndex.intValue = 3 },
               )
 
-              ItemsSpacer()
+              NickelNavigationBarSpacer()
 
-              Item(
+              NickelNavigationBarItem(
                 text = {
                   Text(
                     text = "Помощь",
@@ -162,7 +161,7 @@ class RootActivity : ComponentActivity() {
                 onClick = { checkedIndex.intValue = 1 },
               )
 
-              Item(
+              NickelNavigationBarItem(
                 text = {
                   Text(
                     text = "Донаты",

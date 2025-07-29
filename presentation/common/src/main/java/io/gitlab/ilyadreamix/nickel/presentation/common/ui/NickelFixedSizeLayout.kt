@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 
 @Composable
-internal fun NickelFixedSizeLayout(
+fun NickelFixedSizeLayout(
   width: Dp,
   height: Dp,
   modifier: Modifier = Modifier,
@@ -31,7 +31,7 @@ internal fun NickelFixedSizeLayout(
 }
 
 @Composable
-internal fun NickelFixedSizeLayout(
+fun NickelFixedSizeLayout(
   size: Dp,
   modifier: Modifier = Modifier,
   content: @Composable () -> Unit

@@ -29,7 +29,7 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Share
 import io.gitlab.ilyadreamix.nickel.presentation.common.lucide.NavigateBack
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
+import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
@@ -87,10 +87,7 @@ fun NickelToolbar(
           end = true
         )
         .height(MaterialTheme.nickelSizes.toolbar.height)
-        .padding(
-          vertical = MaterialTheme.nickelSizes.toolbar.verticalPadding,
-          horizontal = MaterialTheme.nickelSizes.toolbar.horizontalPadding
-        ),
+        .padding(MaterialTheme.nickelSizes.toolbar.padding),
       leadingActions = leadingActionsContent,
       title = titleContent,
       trailingActions = trailingActions

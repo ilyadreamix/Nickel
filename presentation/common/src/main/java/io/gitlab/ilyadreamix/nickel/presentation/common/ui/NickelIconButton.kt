@@ -7,7 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
+import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 
 @Composable
 fun NickelIconButton(

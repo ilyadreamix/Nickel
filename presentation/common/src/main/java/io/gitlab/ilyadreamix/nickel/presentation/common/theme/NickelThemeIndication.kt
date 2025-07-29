@@ -118,7 +118,7 @@ private class ScaleIndicationNode(
       interactionSource.interactions.collectLatest { interaction ->
         when (interaction) {
           is PressInteraction.Press -> animateToPressed()
-          is PressInteraction.Release -> animateToReleased()
+          is PressInteraction.Release,
           is PressInteraction.Cancel -> animateToReleased()
         }
       }

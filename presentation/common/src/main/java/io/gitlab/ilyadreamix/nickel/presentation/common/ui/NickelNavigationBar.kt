@@ -34,7 +34,7 @@ import com.composables.icons.lucide.Image
 import com.composables.icons.lucide.Lucide
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelIndicationPressStrength
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.nickelSizes
+import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.rememberNickelIndication
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
@@ -189,7 +189,7 @@ class NickelNavigationBarScope internal constructor(internal val parent: Parent)
 
   @OptIn(ExperimentalMaterial3ExpressiveApi::class)
   @Composable
-  fun Item(
+  fun NickelNavigationBarItem(
     isChecked: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -227,7 +227,7 @@ class NickelNavigationBarScope internal constructor(internal val parent: Parent)
   }
 
   @Composable
-  fun ItemsSpacer(modifier: Modifier = Modifier) {
+  fun NickelNavigationBarSpacer(modifier: Modifier = Modifier) {
     if (parent is Parent.Column) {
       with(parent.scope) {
         Spacer(modifier = modifier.weight(1f))
@@ -261,7 +261,7 @@ class NickelNavigationBarScope internal constructor(internal val parent: Parent)
 internal fun NickelNavigationBarPreview(modifier: Modifier = Modifier) {
   NickelTheme {
     NickelNavigationBar {
-      Item(
+      NickelNavigationBarItem(
         text = { Text("Button") },
         icon = {
           Icon(
@@ -272,7 +272,7 @@ internal fun NickelNavigationBarPreview(modifier: Modifier = Modifier) {
         isChecked = false,
         onClick = {}
       )
-      Item(
+      NickelNavigationBarItem(
         text = { Text("Button") },
         icon = {
           Icon(
@@ -283,7 +283,7 @@ internal fun NickelNavigationBarPreview(modifier: Modifier = Modifier) {
         isChecked = false,
         onClick = {}
       )
-      Item(
+      NickelNavigationBarItem(
         text = { Text("Button") },
         icon = {
           Icon(
@@ -295,9 +295,9 @@ internal fun NickelNavigationBarPreview(modifier: Modifier = Modifier) {
         onClick = {}
       )
 
-      ItemsSpacer()
+      NickelNavigationBarSpacer()
 
-      Item(
+      NickelNavigationBarItem(
         text = { Text("Button") },
         icon = {
           Icon(
@@ -308,7 +308,7 @@ internal fun NickelNavigationBarPreview(modifier: Modifier = Modifier) {
         isChecked = false,
         onClick = {}
       )
-      Item(
+      NickelNavigationBarItem(
         text = { Text("Button") },
         icon = {
           Icon(
