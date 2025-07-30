@@ -29,10 +29,10 @@ import com.composables.icons.lucide.Download
 import com.composables.icons.lucide.HandCoins
 import com.composables.icons.lucide.Info
 import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.MoveStart
 import com.composables.icons.lucide.Settings
 import com.composables.icons.lucide.Share
 import io.gitlab.ilyadreamix.nickel.presentation.common.R
-import io.gitlab.ilyadreamix.nickel.presentation.common.lucide.NavigateBack
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 import io.gitlab.ilyadreamix.nickel.presentation.common.ui.NickelIconButton
 import io.gitlab.ilyadreamix.nickel.presentation.common.ui.NickelNavigationBar
@@ -69,7 +69,7 @@ class RootActivity : ComponentActivity() {
               leadingActions = {
                 NickelIconButton(onClick = {}) {
                   Icon(
-                    imageVector = Lucide.NavigateBack,
+                    imageVector = Lucide.MoveStart,
                     contentDescription = null
                   )
                 }

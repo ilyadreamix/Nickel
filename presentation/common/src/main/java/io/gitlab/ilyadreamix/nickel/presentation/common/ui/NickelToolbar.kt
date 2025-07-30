@@ -26,8 +26,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.util.fastFirstOrNull
 import com.composables.icons.lucide.Check
 import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.MoveStart
 import com.composables.icons.lucide.Share
-import io.gitlab.ilyadreamix.nickel.presentation.common.lucide.NavigateBack
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
@@ -200,7 +200,7 @@ internal fun NickelToolbarPreview(modifier: Modifier = Modifier) {
       leadingActions = {
         NickelIconButton(onClick = {}) {
           Icon(
-            imageVector = Lucide.NavigateBack,
+            imageVector = Lucide.MoveStart,
             contentDescription = null
           )
         }
