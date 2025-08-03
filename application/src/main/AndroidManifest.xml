@@ -8,7 +8,7 @@
     android:name="io.gitlab.ilyadreamix.nickel.application.NickelApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
-    android:label="@string/common_app_name"
+    android:label="@string/common_nickel"
     android:supportsRtl="true">
 
     <activity
