@@ -41,7 +41,7 @@ private val PhonePadding = PaddingValues(8.dp)
 private val PhoneSpacing = Dp.Unspecified
 private val PhoneItemPadding = PaddingValues(4.dp)
 private val PhoneItemIconSize = 24.dp.square
-private val PhoneItemSize = 56.dp withHeight 78.dp
+private val PhoneItemSize = 78.dp withHeight 56.dp
 
 private val TabletSize = 100.dp withHeight Dp.Unspecified
 private val TabletPadding = PaddingValues(10.dp)

@@ -9,7 +9,7 @@
     android:translateX="20.16"
     android:translateY="20.16">
     <path
-      android:fillColor="@color/app_splash_icon"
+      android:fillColor="@color/application_splash_icon"
       android:pathData="M20.776,71V26.392H31.016L50.472,57.816H47.848V26.392H57.896V71H47.592L28.264,39.512H30.824V71H20.776ZM65.079,71V39.448H74.743V71H65.079ZM65.016,35.096V26.392H74.871V35.096H65.016Z" />
   </group>
 </vector>

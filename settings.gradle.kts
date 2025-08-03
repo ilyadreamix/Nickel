@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Nickel"
 
-include(":app")
+include(":application")
 include(":common")
 
 include(":presentation:common")

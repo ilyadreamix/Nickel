@@ -14,7 +14,8 @@ private val LightBackground = Color.White
 private val LightOnBackground = Color.Black
 private val LightPrimary = Color(0xFF282828)
 private val LightOnPrimary = Color.White
-private val LightOutline = Color(0xFFD5D5D5)
+private val LightOutline = Color.Black
+private val LightOutlineVariant = Color(0xFFD5D5D5)
 private val LightSurface = Color.White
 private val LightOnSurface = Color.Black
 
@@ -22,7 +23,8 @@ private val DarkBackground = Color.Black
 private val DarkOnBackground = Color.White
 private val DarkPrimary = Color(0xFFD7D7D7)
 private val DarkOnPrimary = Color.Black
-private val DarkOutline = Color(0xFF262626)
+private val DarkOutline = Color.White
+private val DarkOutlineVariant = Color(0xFF262626)
 private val DarkSurface = Color.Black
 private val DarkOnSurface = Color.White
 
@@ -32,7 +34,7 @@ internal val NickelLightColorScheme = lightColorScheme(
   primary = LightPrimary,
   onPrimary = LightOnPrimary,
   outline = LightOutline,
-  outlineVariant = LightOutline,
+  outlineVariant = LightOutlineVariant,
   surface = LightSurface,
   onSurface = LightOnSurface
 )
@@ -43,7 +45,7 @@ internal val NickelDarkColorScheme = darkColorScheme(
   primary = DarkPrimary,
   onPrimary = DarkOnPrimary,
   outline = DarkOutline,
-  outlineVariant = DarkOutline,
+  outlineVariant = DarkOutlineVariant,
   surface = DarkSurface,
   onSurface = DarkOnSurface
 )

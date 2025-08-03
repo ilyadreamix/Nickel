@@ -8,7 +8,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 internal val ProviderModule = module {
-  singleOf(::VersionInfoProviderImpl) { bind<VersionInfoProvider>() }
-  singleOf(::CoroutineDispatcherProviderImpl) { bind<CoroutineDispatcherProvider>() }
-  singleOf(::StaticConfigurationProviderImpl) { bind<StaticConfigurationProvider>() }
+  singleOf(::DefaultVersionInfoProvider) { bind<VersionInfoProvider>() }
+  singleOf(::DefaultCoroutineDispatcherProvider) { bind<CoroutineDispatcherProvider>() }
+  singleOf(::DefaultStaticConfigurationProvider) { bind<StaticConfigurationProvider>() }
 }

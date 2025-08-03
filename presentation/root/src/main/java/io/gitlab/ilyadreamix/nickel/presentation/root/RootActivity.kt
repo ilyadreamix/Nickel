@@ -76,7 +76,7 @@ class RootActivity : ComponentActivity() {
               },
               title = {
                 Image(
-                  painter = painterResource(R.drawable.presentation_common_app_logo),
+                  painter = painterResource(R.drawable.presentation_common_application_logo),
                   contentDescription = null,
                   colorFilter = ColorFilter.tint(color = LocalContentColor.current),
                   modifier = Modifier.padding(16.dp)
@@ -189,7 +189,7 @@ class RootActivity : ComponentActivity() {
               .padding(innerPadding)
           ) {
             Image(
-              painter = painterResource(R.drawable.presentation_common_app_logo),
+              painter = painterResource(R.drawable.presentation_common_application_logo),
               contentDescription = null,
               colorFilter = ColorFilter.tint(color = LocalContentColor.current),
               modifier = Modifier.width(128.dp)

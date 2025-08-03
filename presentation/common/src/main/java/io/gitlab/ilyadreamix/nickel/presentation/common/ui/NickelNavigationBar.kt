@@ -182,7 +182,7 @@ private fun TabletNavigationBarLayout(
 }
 
 @LayoutScopeMarker
-class NickelNavigationBarScope internal constructor(internal val parent: Parent) {
+class NickelNavigationBarScope internal constructor(private val parent: Parent) {
   internal sealed interface Parent {
     data class Row(val scope: RowScope) : Parent
     data class Column(val scope: ColumnScope) : Parent

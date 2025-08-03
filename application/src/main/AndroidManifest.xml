@@ -5,7 +5,7 @@
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
   <application
-    android:name=".NickelApplication"
+    android:name="io.gitlab.ilyadreamix.nickel.application.NickelApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/common_app_name"
@@ -14,7 +14,7 @@
     <activity
       android:name="io.gitlab.ilyadreamix.nickel.presentation.root.RootActivity"
       android:exported="true"
-      android:theme="@style/Nickel.Theme.SplashScreen">
+      android:theme="@style/Nickel.Application.SplashScreen">
 
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
