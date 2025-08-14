@@ -35,12 +35,11 @@ import com.composables.icons.lucide.Image
 import com.composables.icons.lucide.Lucide
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelIndicationPressStrength
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
-import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.rememberNickelIndication
+import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
-import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ui
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.windowInsetsPartialPadding
 
@@ -52,10 +51,7 @@ fun NickelNavigationBar(
   drawDivider: Boolean = true,
   content: @Composable NickelNavigationBarScope.() -> Unit
 ) {
-
-  val screenType = getScreenType()
-
-  when (screenType) {
+  when (MaterialTheme.nickelSizes.screenType) {
     ScreenType.Phone -> PhoneNavigationBar(
       modifier = modifier,
       color = color,
@@ -92,8 +88,6 @@ private fun PhoneNavigationBar(
       contentColor = contentColor
     ) {
       PhoneNavigationBarLayout(
-        color = color,
-        contentColor = contentColor,
         modifier = Modifier
           .windowInsetsPartialPadding(
             windowInsets = WindowInsets.ui,
@@ -111,8 +105,6 @@ private fun PhoneNavigationBar(
 
 @Composable
 private fun PhoneNavigationBarLayout(
-  color: Color,
-  contentColor: Color,
   modifier: Modifier = Modifier,
   content: @Composable NickelNavigationBarScope.() -> Unit
 ) {
@@ -142,8 +134,6 @@ private fun TabletNavigationBar(
       contentColor = contentColor
     ) {
       TabletNavigationBarLayout(
-        color = color,
-        contentColor = contentColor,
         modifier = Modifier
           .windowInsetsPartialPadding(
             windowInsets = WindowInsets.ui,
@@ -165,8 +155,6 @@ private fun TabletNavigationBar(
 
 @Composable
 private fun TabletNavigationBarLayout(
-  color: Color,
-  contentColor: Color,
   modifier: Modifier = Modifier,
   content: @Composable NickelNavigationBarScope.() -> Unit
 ) {
@@ -238,8 +226,7 @@ class NickelNavigationBarScope internal constructor(private val parent: Parent) 
     @Composable
     @ReadOnlyComposable
     private fun getItemTitleTextStyle(isChecked: Boolean): TextStyle {
-      val screenType = getScreenType()
-      val textStyle = when (screenType) {
+      val textStyle = when (MaterialTheme.nickelSizes.screenType) {
         ScreenType.Phone -> MaterialTheme.typography.labelMedium
         ScreenType.Tablet -> MaterialTheme.typography.labelLarge
       }
@@ -259,7 +246,7 @@ class NickelNavigationBarScope internal constructor(private val parent: Parent) 
 @Composable
 internal fun NickelNavigationBarPreview(modifier: Modifier = Modifier) {
   NickelTheme {
-    NickelNavigationBar {
+    NickelNavigationBar(modifier = modifier) {
       NickelNavigationBarItem(
         text = { Text("Button") },
         icon = {

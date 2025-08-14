@@ -15,10 +15,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.unit.dp
 import io.gitlab.ilyadreamix.nickel.presentation.common.theme.NickelTheme
+import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
-import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ui
 
 @Composable
@@ -30,15 +30,12 @@ fun NickelScreen(
   navigationBar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
   content: @Composable (innerPadding: PaddingValues) -> Unit,
 ) {
-
-  val screenType = getScreenType()
-
   NickelSurface(
     modifier = modifier,
     color = color,
     contentColor = contentColor
   ) {
-    when (screenType) {
+    when (MaterialTheme.nickelSizes.screenType) {
       ScreenType.Phone -> PhoneScreenLayout(
         toolbar = toolbar,
         navigationBar = navigationBar,
@@ -153,6 +150,7 @@ private const val SlotContent = "Content"
 internal fun NickelScreenPreview(modifier: Modifier = Modifier) {
   NickelTheme {
     NickelScreen(
+      modifier = modifier,
       toolbar = { innerPadding ->
         NickelToolbarPreview(modifier = Modifier.padding(innerPadding))
       },

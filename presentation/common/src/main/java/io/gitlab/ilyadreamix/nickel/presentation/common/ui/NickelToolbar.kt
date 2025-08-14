@@ -33,7 +33,6 @@ import io.gitlab.ilyadreamix.nickel.presentation.common.theme.sizes.nickelSizes
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewPhone
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.NickelPreviewTablet
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ScreenType
-import io.gitlab.ilyadreamix.nickel.presentation.common.utility.getScreenType
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.ui
 import io.gitlab.ilyadreamix.nickel.presentation.common.utility.windowInsetsPartialPadding
 
@@ -47,9 +46,6 @@ fun NickelToolbar(
   trailingActions: (@Composable RowScope.() -> Unit)? = null,
   ignoreStartInsets: Boolean = false
 ) {
-
-  val screenType = getScreenType()
-
   NickelSurface(
     modifier = modifier.fillMaxWidth(),
     color = color,
@@ -83,7 +79,7 @@ fun NickelToolbar(
         .windowInsetsPartialPadding(
           windowInsets = WindowInsets.ui,
           top = true,
-          start = ignoreStartInsets && screenType == ScreenType.Tablet,
+          start = ignoreStartInsets && MaterialTheme.nickelSizes.screenType == ScreenType.Tablet,
           end = true
         )
         .height(MaterialTheme.nickelSizes.toolbar.height)
@@ -182,8 +178,7 @@ private val TitleTextStyle
   @Composable
   @ReadOnlyComposable
   get(): TextStyle {
-    val screenType = getScreenType()
-    val style = when (screenType) {
+    val style = when (MaterialTheme.nickelSizes.screenType) {
       ScreenType.Phone -> MaterialTheme.typography.titleLarge
       ScreenType.Tablet -> MaterialTheme.typography.headlineSmall
     }
