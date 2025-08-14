@@ -43,8 +43,7 @@ fun NickelToolbar(
   contentColor: Color = MaterialTheme.colorScheme.onSurface,
   leadingActions: (@Composable RowScope.() -> Unit)? = null,
   title: (@Composable () -> Unit)? = null,
-  trailingActions: (@Composable RowScope.() -> Unit)? = null,
-  ignoreStartInsets: Boolean = false
+  trailingActions: (@Composable RowScope.() -> Unit)? = null
 ) {
   NickelSurface(
     modifier = modifier.fillMaxWidth(),
@@ -79,7 +78,7 @@ fun NickelToolbar(
         .windowInsetsPartialPadding(
           windowInsets = WindowInsets.ui,
           top = true,
-          start = ignoreStartInsets && MaterialTheme.nickelSizes.screenType == ScreenType.Tablet,
+          start = LocalNickelScreenHasNavigationBar.current && MaterialTheme.nickelSizes.screenType == ScreenType.Tablet,
           end = true
         )
         .height(MaterialTheme.nickelSizes.toolbar.height)
@@ -217,8 +216,7 @@ internal fun NickelToolbarPreview(modifier: Modifier = Modifier) {
             contentDescription = null
           )
         }
-      },
-      ignoreStartInsets = true
+      }
     )
   }
 }

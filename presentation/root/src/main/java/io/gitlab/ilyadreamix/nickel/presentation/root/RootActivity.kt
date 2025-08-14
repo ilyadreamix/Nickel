@@ -96,8 +96,7 @@ class RootActivity : ComponentActivity() {
                     contentDescription = null
                   )
                 }
-              },
-              ignoreStartInsets = true
+              }
             )
           },
           navigationBar = {

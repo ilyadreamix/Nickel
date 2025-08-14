@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
@@ -176,7 +175,6 @@ class NickelNavigationBarScope internal constructor(private val parent: Parent) 
     data class Column(val scope: ColumnScope) : Parent
   }
 
-  @OptIn(ExperimentalMaterial3ExpressiveApi::class)
   @Composable
   fun NickelNavigationBarItem(
     isChecked: Boolean,
@@ -230,13 +228,7 @@ class NickelNavigationBarScope internal constructor(private val parent: Parent) 
         ScreenType.Phone -> MaterialTheme.typography.labelMedium
         ScreenType.Tablet -> MaterialTheme.typography.labelLarge
       }
-      return textStyle.copy(
-        fontWeight = if (isChecked) {
-          FontWeight.Bold
-        } else {
-          FontWeight.Normal
-        }
-      )
+      return textStyle.copy(fontWeight = if (isChecked) FontWeight.Bold else FontWeight.Normal)
     }
   }
 }

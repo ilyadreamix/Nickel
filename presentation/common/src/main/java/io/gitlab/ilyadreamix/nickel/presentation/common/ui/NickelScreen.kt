@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.SubcomposeLayout
@@ -30,24 +32,29 @@ fun NickelScreen(
   navigationBar: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
   content: @Composable (innerPadding: PaddingValues) -> Unit,
 ) {
-  NickelSurface(
-    modifier = modifier,
-    color = color,
-    contentColor = contentColor
-  ) {
-    when (MaterialTheme.nickelSizes.screenType) {
-      ScreenType.Phone -> PhoneScreenLayout(
-        toolbar = toolbar,
-        navigationBar = navigationBar,
-        content = content
-      )
-      ScreenType.Tablet -> TabletScreenLayout(
-        toolbar = toolbar,
-        navigationBar = navigationBar,
-        content = content
-      )
+  CompositionLocalProvider(
+    value = LocalNickelScreenHasNavigationBar provides (navigationBar != null),
+    content = {
+      NickelSurface(
+        modifier = modifier,
+        color = color,
+        contentColor = contentColor
+      ) {
+        when (MaterialTheme.nickelSizes.screenType) {
+          ScreenType.Phone -> PhoneScreenLayout(
+            toolbar = toolbar,
+            navigationBar = navigationBar,
+            content = content
+          )
+          ScreenType.Tablet -> TabletScreenLayout(
+            toolbar = toolbar,
+            navigationBar = navigationBar,
+            content = content
+          )
+        }
+      }
     }
-  }
+  )
 }
 
 @Composable
@@ -139,6 +146,8 @@ private fun TabletScreenLayout(
     }
   }
 }
+
+internal val LocalNickelScreenHasNavigationBar = staticCompositionLocalOf { false }
 
 private const val SlotToolbar = "Toolbar"
 private const val SlotNavigationBar = "NavigationBar"
