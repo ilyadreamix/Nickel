@@ -78,7 +78,7 @@ fun NickelToolbar(
         .windowInsetsPartialPadding(
           windowInsets = WindowInsets.ui,
           top = true,
-          start = LocalNickelScreenHasNavigationBar.current && MaterialTheme.nickelSizes.screenType == ScreenType.Tablet,
+          start = !LocalNickelScreenHasNavigationBar.current && MaterialTheme.nickelSizes.screenType == ScreenType.Tablet,
           end = true
         )
         .height(MaterialTheme.nickelSizes.toolbar.height)
